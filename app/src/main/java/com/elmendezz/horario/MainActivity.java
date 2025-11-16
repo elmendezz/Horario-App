@@ -1,11 +1,14 @@
 package com.elmendezz.horario;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.webkit.ConsoleMessage;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
@@ -22,9 +25,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
+import androidx.core.splashscreen.SplashScreenViewProvider;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,8 +46,32 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        SplashScreen.installSplashScreen(this);
+        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         EdgeToEdge.enable(this); // Habilita edge-to-edge para la actividad principal
+        getWindow().setStatusBarColor(android.graphics.Color.TRANSPARENT);
+
+        // --- INICIO DE CAMBIOS: ANIMACIÓN DE SALIDA DEL SPLASH SCREEN ---
+        splashScreen.setOnExitAnimationListener(splashScreenView -> {
+            final View view = splashScreenView.getView();
+            final ObjectAnimator slideUp = ObjectAnimator.ofFloat(
+                    view,
+                    View.TRANSLATION_Y,
+                    0f,
+                    -view.getHeight()
+            );
+            slideUp.setInterpolator(new AccelerateInterpolator());
+            slideUp.setDuration(800L); // Duración de la animación
+
+            slideUp.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    splashScreenView.remove();
+                }
+            });
+            slideUp.start();
+        });
+        // --- FIN DE CAMBIOS ---
+
         setContentView(R.layout.activity_main);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -113,14 +143,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showDevelopmentDialog() {
-        AlertDialog dialog = new AlertDialog.Builder(this)
+        AlertDialog dialog = new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_App_MaterialAlertDialog_Fullscreen)
                 .setTitle("Modo de Desarrollo")
                 .setMessage("Esta aplicación se encuentra en una fase activa de desarrollo. Algunas funciones pueden no comportarse como se espera.")
                 .setPositiveButton("Entendido", (d, which) -> d.dismiss())
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .create();
 
-        // ¡¡LA CLAVE PARA LAS BARRAS TRANSPARENTES EN EL DIÁLOGO!!
         if (dialog.getWindow() != null) {
             WindowCompat.setDecorFitsSystemWindows(dialog.getWindow(), false);
         }

@@ -22,4 +22,9 @@
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
         <item name="postSplashScreenTheme">@style/Theme.Horario</item>
     </style>
+
+    <style name="ThemeOverlay.App.MaterialAlertDialog.Fullscreen" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

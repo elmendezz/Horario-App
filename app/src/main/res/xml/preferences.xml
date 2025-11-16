@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Actualizaciones">
+
+        <Preference
+            android:key="check_for_updates"
+            android:title="Buscar actualizaciones"
+            android:summary="Busca la última versión disponible en GitHub" />
+
+        <Preference
+            android:key="view_changelog"
+            android:title="Ver registro de cambios"
+            android:summary="Consulta el historial de versiones en GitHub" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
