@@ -27,4 +27,9 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
+    <style name="Theme.Horario.Settings" parent="Theme.Material3.DayNight">
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+    </style>
 </resources>

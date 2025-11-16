@@ -6,12 +6,30 @@
         <Preference
             android:key="check_for_updates"
             android:title="Buscar actualizaciones"
-            android:summary="Busca la última versión disponible en GitHub" />
+            android:summary="Descarga e instala la última versión" />
 
         <Preference
             android:key="view_changelog"
             android:title="Ver registro de cambios"
-            android:summary="Consulta el historial de versiones en GitHub" />
+            android:summary="Muestra las novedades de la última versión" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Datos y caché">
+
+        <Preference
+            android:key="clear_cache"
+            android:title="Limpiar caché"
+            android:summary="Borra la caché del navegador interno" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Acerca de">
+
+        <Preference
+            android:key="app_version"
+            android:title="Versión de la aplicación"
+            android:summary="" /> <!-- Se rellenará programáticamente -->
 
     </PreferenceCategory>
 
