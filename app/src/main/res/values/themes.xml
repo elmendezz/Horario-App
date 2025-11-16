@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Horario" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Habilitar colores dinámicos de Material You (Android 12+) -->
+        <!-- No es necesario añadir nada más, el sistema lo hace automático -->
+
+        <!-- Forzar barras de estado y navegación transparentes -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
+    </style>
+
+    <style name="Theme.Horario" parent="Base.Theme.Horario" />
+
+    <!-- Tema para la Splash Screen -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#151A26</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.Horario</item>
+    </style>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- WebView para mostrar el contenido web -->
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Panel de error, oculto por defecto -->
+    <LinearLayout
+        android:id="@+id/error_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#151A26"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Página no disponible"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Se ha producido un error al cargar la página. Detalles técnicos:"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/error_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="#E0E0E0"
+            android:fontFamily="monospace"
+            android:textIsSelectable="true"
+            tools:text="Error Code: -2\nDescription: net::ERR_INTERNET_DISCONNECTED\nFailing URL: https://horario-1cv.vercel.app/"/>
+
+    </LinearLayout>
+
+</FrameLayout>
